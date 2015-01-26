@@ -1,0 +1,13 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <SolidColorBrush x:Key="DarkBackgroundBrush" Color="Black" />
+    <SolidColorBrush x:Key="LightTextBrush" Color="DodgerBlue" />
+    
+    <Style x:Key="LogEntryTextBox" TargetType="{x:Type TextBox}">
+        <Setter Property="Background" Value="{StaticResource DarkBackgroundBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource LightTextBrush}" />
+        <Setter Property="FontFamily" Value="Consolas" />
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="BorderThickness" Value="0" />
+    </Style>
+</ResourceDictionary>

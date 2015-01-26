@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogApp", "App\LogApp.csproj", "{14A30BB4-0A3A-41FB-9D22-EF2A66E56F44}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogGenerator", "LogGenerator\LogGenerator.csproj", "{3336F955-F61B-4D92-A6B4-36F3ECDD3F18}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LogReader", "LogReader\LogReader.csproj", "{752B1934-45F5-474A-8265-8CD07EB4CAAB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{14A30BB4-0A3A-41FB-9D22-EF2A66E56F44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14A30BB4-0A3A-41FB-9D22-EF2A66E56F44}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14A30BB4-0A3A-41FB-9D22-EF2A66E56F44}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14A30BB4-0A3A-41FB-9D22-EF2A66E56F44}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3336F955-F61B-4D92-A6B4-36F3ECDD3F18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3336F955-F61B-4D92-A6B4-36F3ECDD3F18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3336F955-F61B-4D92-A6B4-36F3ECDD3F18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3336F955-F61B-4D92-A6B4-36F3ECDD3F18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{752B1934-45F5-474A-8265-8CD07EB4CAAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{752B1934-45F5-474A-8265-8CD07EB4CAAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{752B1934-45F5-474A-8265-8CD07EB4CAAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{752B1934-45F5-474A-8265-8CD07EB4CAAB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
