@@ -11,7 +11,7 @@
     <Grid>
         <Label Content="{Binding LogFile}" />
         <ScrollViewer>
-            <ItemsControl ItemsSource="{Binding LogEntries}">
+            <ItemsControl ItemsSource="{Binding LogEntries, Delay=1000}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <StackPanel Orientation="Vertical" />

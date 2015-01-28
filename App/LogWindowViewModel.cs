@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Reactive.Linq;
+using Humanizer;
 
 namespace LogWrangler.LogApp
 {
@@ -28,7 +30,9 @@ namespace LogWrangler.LogApp
         public LogWindowViewModel(ILogReader logReader)
         {
             _logEntries = new ObservableCollection<ILogEntry>();
-            _unsubscriber = logReader.Subscribe(this);
+            _unsubscriber = logReader
+                .ObserveOn(SynchronizationContext.Current)
+                .Subscribe(this);
             _cancellationTokenSource = new CancellationTokenSource();
             Task.Run(() => logReader.Start(LogFile, _cancellationTokenSource.Token));
         }
@@ -52,9 +56,17 @@ namespace LogWrangler.LogApp
             throw new Exception("An error occurred.", error);
         }
 
-        public void OnNext(ILogEntry value)
+        public void OnNext(ILogEntry entry)
         {
-            _logEntries.Add(value);
+            _logEntries.Add(entry);
+        }
+
+        public void OnNext(IList<ILogEntry> entries)
+        {
+            foreach (ILogEntry entry in entries)
+            {
+                OnNext(entry);
+            }
         }
     }
 }

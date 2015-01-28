@@ -12,13 +12,13 @@ namespace LogReader
 {
     public class LogReader : ILogReader
     {
-        private readonly ConcurrentDictionary<int, ContextAwareObserver<ILogEntry>> _observers;
+        private readonly ConcurrentDictionary<int, IObserver<ILogEntry>> _observers;
         private int _observerKeyCounter = 0;
         private bool _isPaused = false;
 
         public LogReader()
         {
-            _observers = new ConcurrentDictionary<int, ContextAwareObserver<ILogEntry>>();
+            _observers = new ConcurrentDictionary<int, IObserver<ILogEntry>>();
         }
 
         public async Task Start(string path, CancellationToken token)
@@ -38,7 +38,7 @@ namespace LogReader
                             _observers.Values.AsParallel().ForAll(o => o.OnNext(entry));
                         }
                     }
-                    await Task.Delay(10.Milliseconds());
+                    await Task.Delay(1.Milliseconds());
                 }
             }
         }
@@ -56,9 +56,9 @@ namespace LogReader
         public IDisposable Subscribe(IObserver<ILogEntry> observer)
         {
             int observerKey = _observerKeyCounter++;
-            SynchronizationContext context = SynchronizationContext.Current;
-            ContextAwareObserver<ILogEntry> contextObserver = new ContextAwareObserver<ILogEntry>(observer, context);
-            if (!_observers.TryAdd(observerKey, contextObserver))
+            //SynchronizationContext context = SynchronizationContext.Current;
+            //ContextAwareObserver<ILogEntry> contextObserver = new ContextAwareObserver<ILogEntry>(observer, context);
+            if (!_observers.TryAdd(observerKey, observer))
             {
                 observer.OnError(new InvalidOperationException("Count not add observer."));
             }
@@ -68,9 +68,9 @@ namespace LogReader
         private class Unsubscriber : IDisposable
         {
             private readonly int _key;
-            private readonly ConcurrentDictionary<int, ContextAwareObserver<ILogEntry>> _observers;
+            private readonly ConcurrentDictionary<int, IObserver<ILogEntry>> _observers;
 
-            public Unsubscriber(int key, ConcurrentDictionary<int, ContextAwareObserver<ILogEntry>> observers)
+            public Unsubscriber(int key, ConcurrentDictionary<int, IObserver<ILogEntry>> observers)
             {
                 _key = key;
                 _observers = observers;
@@ -78,7 +78,7 @@ namespace LogReader
 
             public void Dispose()
             {
-                ContextAwareObserver<ILogEntry> dummyEntry;
+                IObserver<ILogEntry> dummyEntry;
                 if (!_observers.TryRemove(_key, out dummyEntry))
                 {
                     
